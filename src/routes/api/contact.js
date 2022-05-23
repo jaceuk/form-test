@@ -10,10 +10,11 @@ export async function post({ request }) {
 		auth: {
 			user: import.meta.env.VITE_SMTP_USER,
 			pass: import.meta.env.VITE_SMTP_PASS
-		}
+		},
+		secure: import.meta.env.VITE_SMTP_SECURE
 	});
 
-	const mailData = {
+	const mailOptions = {
 		from: email,
 		to: 'info@jace.info',
 		subject: `Contact form submission from ${name}`,
@@ -24,7 +25,7 @@ export async function post({ request }) {
 	};
 
 	try {
-		const response = await transporter.sendMail(mailData);
+		const response = await transporter.sendMail(mailOptions);
 		console.log(response);
 		return {
 			body: {
@@ -36,7 +37,7 @@ export async function post({ request }) {
 		return {
 			body: {
 				status: 500,
-				message: error.response.body.errors
+				message: `${error}`
 			}
 		};
 	}

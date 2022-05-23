@@ -31,7 +31,7 @@
       message = '';
     } catch (error) {
       outcome.status = 500;
-      outcome.message = 'Server timeout.';
+      outcome.message = 'Server failed to respond.';
       console.log(error)
     }
 
@@ -52,6 +52,7 @@
 {/if}
 
 {#if outcome.status === 500}
+    <p><strong>{outcome.message}</strong></p>
     There was a problem sending your message, please try again.<br />If the problem perists please email
     info@jace.info.
 {/if}
