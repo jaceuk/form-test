@@ -24,7 +24,8 @@ export async function post({ request }) {
 	};
 
 	try {
-		await transporter.sendMail(mailData);
+		const response = await transporter.sendMail(mailData);
+		console.log(response);
 		return {
 			body: {
 				status: 200,
