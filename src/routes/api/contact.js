@@ -11,7 +11,7 @@ export async function post({ request }) {
 			user: import.meta.env.VITE_SMTP_USER,
 			pass: import.meta.env.VITE_SMTP_PASS
 		},
-		secure: true
+		secure: import.meta.env.VITE_SMTP_SECURE
 	});
 
 	const mailOptions = {
